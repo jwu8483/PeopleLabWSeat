@@ -1,32 +1,73 @@
 package pLab;
 
 public class Classroom {
+    // Fields
+    private Student[] students;
+    private Teacher teacher;
+    private Student[][] seatingChart = new Student[6][6];
 
-    private String student[];
-    private String teacher;
+    // Constructor
+    public Classroom(Student[] students, Teacher teacher) {
+        this.students = students;
+        this.teacher = teacher;
+        fillSeats();
+    }
 
-    public Classroom()
-    {
-        this.student = student;
+    // Methods
+
+    // Getters
+    public Student[] getStudents() {
+        return students;
+    }
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    // Setters
+    public void setStudents(Student[] students) {
+        this.students = students;
+    }
+    public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
 
-    public classAverage()
-    {
-        for (int i = 0; i <= student[].length(); i++)
-        {
-            GPA += student[i].GPA;
-            double AVG = GPA / student[].length();
-        }
+    /**
+     * Adds up the GPAs of all students and divides by # of students.
+     * @return average of GPAs of students
+     */
+
+    public double classAverage() {
+        double sum = 0;
+
+        for (Student cur : students)
+            sum += cur.getGPA();
+
+        return sum / students.length;
     }
 
-    public printClass()
-    {
-        String sClass = "";
-        sClass += teacher;
-        for (int h = o; h <= student[].length; h++)
-        {
-            sClass += ", " + student[h];
+    /**
+     * @return class Teacher, then subject, then all students in the class.
+     */
+
+    public String printClass() {
+        String studentString = "";
+
+        for (int i = 0; i < students.length; i++) {
+            studentString += "\n" + (i + 1) + ". " + students[i].toString();
+        }
+
+        return "Teacher: " + teacher.toString() +
+                "\nSubject: " + teacher.getSubject() +
+                "\nStudents: " + studentString;
+    }
+
+    private void fillSeats() {
+        int idx = 0;
+        for (Student[] studentArr : seatingChart) {
+            for (int i = 0; i < studentArr.length; i++) {
+                studentArr[i] = students[idx];
+                idx++;
+            }
         }
     }
 }

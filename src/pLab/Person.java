@@ -1,36 +1,39 @@
 package pLab;
 
-public class Person {
-
+public abstract class Person {
+    // Fields
     private String firstName, familyName;
 
-    public Person(String firstName, String familyName)
-    {
+    // Constructor
+    public Person(String firstName, String familyName) {
         this.firstName = firstName;
         this.familyName = familyName;
     }
-    public String getFirstName()
-    {
+
+    // Methods
+
+    // Getters
+    public String getFirstName() {
         return firstName;
     }
-    public void setFirstName(String firstName)
-    {
-        this.firstName = firstName;
-    }
-    public String getFamilyName()
-    {
+    public String getFamilyName() {
         return familyName;
     }
-    public void setFamilyName(String familyName)
-    {
+
+    // Setters
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public void setFamilyName(String familyName) {
         this.familyName = familyName;
     }
-    public boolean equals(Person person)
-    {
-        if (this.firstName.equals(person.getFirstName()) && this.familyName.equals(person.getFamilyName()))
-        {
-            return true;
-        }
-        else return false;
+
+    /**
+     * @param p Person object to compare to.
+     * @return true if first and family name are equal.
+     */
+
+    public boolean equals(Person p) {
+        return (p.firstName.equals(firstName)) && (p.familyName.equals(familyName));
     }
 }
